@@ -1,3 +1,3 @@
 # LL-Library
-# S oeverything this program does should be done with just ./library
-#
+So everything this program does should be done with just ./library
+
