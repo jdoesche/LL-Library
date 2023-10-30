@@ -87,7 +87,7 @@ void Library::addentry(string Title, string Author, int pages,
 }
 
 //delete an existing entry
-void deleteentry(string Author, string Title)
+void Library::deleteentry(string Author, string Title)
 {
     //compared to the Hell that was the last one, this will
     //be a cakewalk
@@ -158,8 +158,7 @@ void Library::find_author (string Author)
     }
     cout << "Found " << counter << " matching entries." << endl;
     if (counter == 0)
-        cout << "Are you sure you typed it right?" << endl;
-    endl;
+        cout << "Are you sure you typed it right?" << endl << endl;
     return;
 }
 
@@ -170,7 +169,7 @@ void Library::find_album (string Title)
 
     while (cursor != NULL)
     {
-        if (cursor -> Title = Title)
+        if (cursor -> Title == Title)
         {
             printentry(cursor);
             counter++;
@@ -181,4 +180,53 @@ void Library::find_album (string Title)
     if (counter == 0)
         cout << "Are you sure you typed it right?" << endl << endl;
     return;
+}
+
+void Library::readfromfile(string flnm)
+{
+    ifstream file;
+
+    string junk;
+    string Title;
+    string Author;
+    int pages;
+    string isbn;
+    float price;
+    int year;
+
+    file.open(flnm);
+    getline(file,junk);
+    while (!file.eof())
+    {
+        getline(file,Title);
+        getline(file,Author);
+        file >> pages;
+        file >> isbn;
+        file >> price;
+        file >> year;
+
+        addentry(Title, Author, pages, isbn, price, year);
+        getline(file, junk);
+    }
+    file.close();
+
+    return;
+}
+
+void Library::writetofile(string flnm)
+{
+    ofstream file;
+    Book* cursor;
+
+    file.open(flnm);
+    while (cursor != NULL)
+    {
+        file << cursor -> Title;
+        file << cursor -> Author;
+        file << cursor -> pages << " ";
+        file << cursor -> isbn << " ";
+        file << cursor -> price << " ";
+        file << cursor -> year << endl;
+        cursor = cursor -> next;
+    }
 }

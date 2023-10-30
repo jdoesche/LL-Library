@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include "Phonebook.h"
+#include "Library.h"
 
 void mainloop();
 void easyop();
@@ -35,7 +35,7 @@ void easyop()
 void mainloop()
 {
   Library a;
-  iterator i = 0;
+  int i = 0;
   char operation;
   string holdinput;
 
@@ -76,7 +76,7 @@ void mainloop()
           cout << "Please enter the author you wish to search:" << endl;
           getline(cin, holdinput);
           cout << endl;
-          a.findauthor(holdinput);
+          a.find_author(holdinput);
           break;
         }
         if (operation == '2')
@@ -87,7 +87,7 @@ void mainloop()
           a.find_album(holdinput);
           break;
         }
-        cout << "\"" << operation "\" is not defined. Please try again."
+        cout << "\"" << operation << "\" is not defined. Please try again.";
         break;
       }
       case 'R': //Read from File
@@ -143,7 +143,7 @@ void mainloop()
         getline(cin, Author);
         cout << endl << endl;
 
-        a.deleteentry(Author, Book);
+        a.deleteentry(Author, Title);
         break;
       }
       default:
@@ -151,7 +151,7 @@ void mainloop()
         cout << "Operation \"" << operation << "\" not recognized. Please try again." << endl;
       }
     }
-    cout << "Done. ------------" << iterator;
-    iterator ++;
+    cout << "Done. ------------ [ " << i << " ]" << endl;
+    i++;
   }
 }
