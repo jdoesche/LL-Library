@@ -144,8 +144,8 @@ void Library::print()
 
 void Library::find_author (string Author)
 {
-    Book* cursor;
-    int counter;
+    Book* cursor = head;
+    int counter = 0;
 
     while (cursor != NULL)
     {
@@ -164,7 +164,7 @@ void Library::find_author (string Author)
 
 void Library::find_album (string Title)
 {
-    Book* cursor;
+    Book* cursor = head;
     int counter = 0;
 
     while (cursor != NULL)
@@ -195,8 +195,7 @@ void Library::readfromfile(string flnm)
     int year;
 
     file.open(flnm);
-    getline(file,junk);
-    while (!file.eof())
+    while (file)
     {
         getline(file,Title);
         getline(file,Author);

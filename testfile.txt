@@ -1,6 +1,6 @@
 La Historia De Existence
 Aether
-23000 00-0000000000000000 -1 -14500000000
+23000 00-0000000000000000 -1 -2147483647
 Life and Times of Billy Bob Joe
 Joe Jr, Billy Bob
 326 0h-23a698bc0021f000 23.99 1995
@@ -17,7 +17,7 @@ Detailed History of Aedile Before Our Times
 Burrouge, Saint Ember
 426 0h-002132fa330ab0e2 67.95 785
 Common Sense
-Thomas Paine
+Paine, Thomas
 47 0h-00000023ab02bf2f 3.05 1776
 War of the United Nine
 Burrouge, Saint Ember

@@ -28,7 +28,7 @@ void easyop()
        << "  (D)elete an existing entry" << endl
        << "  (S)earch for an entry" << endl
        << "  (?)  Bring up this menu again" << endl
-       << "  (X)  Quit the Program" << endl
+       << "  (X)  Quit the Program (Also works with Q)" << endl
        << endl;
 }
 
@@ -38,6 +38,7 @@ void mainloop()
   int i = 0;
   char operation;
   string holdinput;
+  string junk;
 
   easyop();
   while (true)
@@ -52,6 +53,7 @@ void mainloop()
         easyop();
         break;
       }
+      case 'Q':
       case 'X': //Exit the program
       {
 
@@ -71,6 +73,8 @@ void mainloop()
       {
         cout << "Do you wish to search by Author (1) or by Album (2)? ";
         cin >> operation;
+        cout << endl;
+        getline(cin, junk);
         if (operation == '1')
         {
           cout << "Please enter the author you wish to search:" << endl;
@@ -113,6 +117,7 @@ void mainloop()
         float price;
         int year;
 
+        getline(cin, junk);
         cout << "Please enter the following information: " << endl
              << "The name of the book (Getline): " << endl;
         getline (cin, Title);
@@ -136,6 +141,7 @@ void mainloop()
         string Title;
         string Author;
 
+        getline (cin, junk);
         cout << "Please enter the following information:" << endl;
         cout << "The Title of the book: " << endl;
         getline(cin, Title);
