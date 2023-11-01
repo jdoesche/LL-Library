@@ -19,12 +19,12 @@ Library::~Library()
 
 void Library::printentry(Book* Item)
 {
-    cout << "Title     : " << Item -> Title << endl
-         << "  Author  : " << Item -> Author << endl
-         << "  ISBN    : " << Item -> isbn << endl
-         << "  Year    : " << Item -> year << endl
-         << "   Pages  : " << Item -> pages << endl
-         << "   Price  : $" << Item -> price << endl
+    cout << "Title    : " << Item -> Title << endl
+         << "  Author : " << Item -> Author << endl
+         << "  ISBN   : " << Item -> isbn << endl
+         << "  Year   : " << Item -> year << endl
+         << "  Pages  : " << Item -> pages << endl
+         << "  Price  : $" << Item -> price << endl
          << endl;
 }
 
@@ -48,6 +48,23 @@ void Library::addentry(string Title, string Author, int pages,
         return;
     }
     //Case 2: Not Empty List (Add Sorted)
+    /* So Basically, how this next functions work boggles my mind, but it works. Basically:
+     *  The Loop Function creates two Book* items. These items are such that Doubletail is set equal to Tail
+     *  before Tail is updated (So Doubletail always equals the entry immedietely prior to Tail). The loop stops
+     *  if it finds the right place to put the new item, or if tail reaches the end. In which case:
+     *
+     *  If the new entry is head, that's easy. We just set the new entry to the new head, and have it point to
+     *  the old head.
+     *
+     *  If the new entry is somewhere in the list, that's where we use Doubletail to reroute the previous
+     *  item into the New Entry, and set the new entry's next to Tail.
+     *
+     *  If it reaches the end of the list, first it will check to see if the end of the list is in the right
+     *  spot (in which case, the previous function is called). If not, it creates a new entry on the end
+     *  of the list.
+     *
+     *  I (Jesse) had worries of if the function failed, so the final case is if that happens.
+     */
     Book* tail = head;
     Book* doubletail = head;
     bool ishead = true;
@@ -147,7 +164,7 @@ void Library::find_author (string Author)
     Book* cursor = head;
     int counter = 0;
 
-    while (cursor != NULL)
+    while (cursor != NULL) //This loop ensures that, if the same author printed multiple works, all works by that author will be shown.
     {
         if (cursor -> Author == Author)
         {
@@ -162,7 +179,7 @@ void Library::find_author (string Author)
     return;
 }
 
-void Library::find_album (string Title)
+void Library::find_album (string Title) //This whole function is a copy-paste of find_author().
 {
     Book* cursor = head;
     int counter = 0;
@@ -195,7 +212,7 @@ void Library::readfromfile(string flnm)
     int year;
 
     file.open(flnm);
-    while (file)
+    while (file)    //while infile, it will store the items in temporary variables, and then send them to addentry()
     {
         getline(file,Title);
         getline(file,Author);
@@ -215,17 +232,22 @@ void Library::readfromfile(string flnm)
 void Library::writetofile(string flnm)
 {
     ofstream file;
-    Book* cursor;
+    Book* cursor = head;
 
     file.open(flnm);
     while (cursor != NULL)
     {
-        file << cursor -> Title;
-        file << cursor -> Author;
+        file << cursor -> Title << endl;
+        file << cursor -> Author << endl;
         file << cursor -> pages << " ";
         file << cursor -> isbn << " ";
         file << cursor -> price << " ";
         file << cursor -> year << endl;
+	
         cursor = cursor -> next;
     }
+
+    file.close();
+
+    return;
 }

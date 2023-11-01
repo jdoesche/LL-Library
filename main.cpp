@@ -7,7 +7,7 @@ using namespace std;
 void mainloop();
 void easyop();
 
-int main()
+int main() //initializer function
 {
 
   cout << "Welcome to the Library Catalog!" << endl;
@@ -18,7 +18,7 @@ int main()
   return 0;
 }
 
-void easyop()
+void easyop() //helper function to automatically cout the options menu
 {
   cout << "You can:" << endl
        << "  (P)rint the current Catalog" << endl
@@ -34,6 +34,7 @@ void easyop()
 
 void mainloop()
 {
+  //definitions
   Library a;
   int i = 0;
   char operation;
@@ -43,6 +44,7 @@ void mainloop()
   easyop();
   while (true)
   {
+    //user inserts their operations
     cout << "Please enter your desired action: ";
     cin >> operation;
 
@@ -75,7 +77,7 @@ void mainloop()
         cin >> operation;
         cout << endl;
         getline(cin, junk);
-        if (operation == '1')
+        if (operation == '1') //search by author
         {
           cout << "Please enter the author you wish to search:" << endl;
           getline(cin, holdinput);
@@ -83,7 +85,7 @@ void mainloop()
           a.find_author(holdinput);
           break;
         }
-        if (operation == '2')
+        if (operation == '2') //search by album
         {
           cout << "Please enter the Title you wish to search:" << endl;
           getline(cin, holdinput);
@@ -91,6 +93,7 @@ void mainloop()
           a.find_album(holdinput);
           break;
         }
+	//in case they user inputs else
         cout << "\"" << operation << "\" is not defined. Please try again.";
         break;
       }
@@ -117,6 +120,7 @@ void mainloop()
         float price;
         int year;
 
+	//get info, it's a mess
         getline(cin, junk);
         cout << "Please enter the following information: " << endl
              << "The name of the book (Getline): " << endl;
@@ -133,6 +137,7 @@ void mainloop()
         cin >> year;
         cout << endl << endl;
 
+	//the actually fun part
         a.addentry(Title, Author, pages, isbn, price, year);
         break;
       }
